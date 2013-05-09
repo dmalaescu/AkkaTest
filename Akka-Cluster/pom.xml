@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--<parent>-->
+        <!--<artifactId>AkkaTest</artifactId>-->
+        <!--<groupId>AkkaTest</groupId>-->
+        <!--<version>1.0-SNAPSHOT</version>-->
+    <!--</parent>-->
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>com.examples.dma</groupId>
+    <artifactId>Akka-Cluster</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-cluster-experimental_2.10</artifactId>
+            <version>${akka.version}</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.typesafe.akka</groupId>-->
+            <!--<artifactId>akka-sample-cluster-experimental_2.10</artifactId>-->
+            <!--<version>${akka.version}</version>-->
+        <!--</dependency>-->
+
+    </dependencies>
+
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>typesafeRepository</id>-->
+            <!--<url>http://repo.typesafe.com</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
+
+    <properties>
+        <akka.version>2.2-M2</akka.version>
+    </properties>
+
+</project>
