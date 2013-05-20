@@ -28,26 +28,19 @@ public class StatsService extends UntypedActor{
                 final ActorRef replyTo = getSender();
 
                 // create actor that collects replies from workers
-                Actor aggregator = null;
-                try {
-                    aggregator = new UntypedActorFactory(){
-                        /**
-                         * This method must return a different instance upon every call.
-                         */
-                         @Override
-                         public Actor create() throws Exception {
-                            return new StatsAggregator(words.length, replyTo);  //To change body of implemented methods use File | Settings | File Templates.
-                        }
-                    }.create();
-                } catch (Exception e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                }
-//                 = getContext().actorOf(
-//                        Props.create(StatsAggregator.class, words.length, replyTo));
+                ActorRef aggregator = getContext().actorOf(new Props(new UntypedActorFactory(){
+                    /**
+                     * This method must return a different instance upon every call.
+                     */
+                    @Override
+                    public Actor create() throws Exception {
+                        return new StatsAggregator(words.length, replyTo);  //To change body of implemented methods use File | Settings | File Templates.
+                    }
+                }));
 
                 // send each word to a worker
                 for (String word : words) {
-                    workerRouter.tell(word, (ActorRef)aggregator);
+                    workerRouter.tell(new ConsistentHashableEnvelope(word, word), aggregator);
                 }
             }
 
